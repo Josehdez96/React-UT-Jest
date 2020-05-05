@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme'; //||shallow|| Permite traer elementos especificos del DOM, ||mount|| trae TODO el DOM
-import ProviderMock from '../../__mocks__/ProviderMock'
+import { create } from 'react-test-renderer';
+import ProviderMock from '../../__mocks__/ProviderMock';
 import Header from '../../components/Header';
 
 describe('<Header />', () => {  
@@ -19,5 +20,17 @@ describe('<Header />', () => {
       </ProviderMock>,
     );
     expect(header.find('.Header-title').text()).toEqual('Platzi Store')
-  })
+  });
+});
+
+
+describe('Header Snapshot', () => {
+  test('Comprobar el snapshot de Header', () => {
+    const header = create( //Si tiene redux, incluimos el provider
+      <ProviderMock>
+        <Header />
+      </ProviderMock>,
+    );
+    expect(header.toJSON()).toMatchSnapshot();
+  });
 });
