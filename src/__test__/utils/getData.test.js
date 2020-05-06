@@ -15,6 +15,6 @@ describe('Fetch API', () => {
         expect(response.data).toEqual('12345'); //La data que devuelve el response debe ser igual a la que simulamos inicialmente para asegurarnos que la función getData funciona
       });
 
+      expect(fetch.mock.calls[0][0]).toEqual('https//google.com'); //Garantizamos que la llamada a la URL google.com si se ejecuta
   });
-  expect(fetch.mock.calls[0][0].toEqual('https//google.com')); //Garantizamos que la llamada a la URL google.com si se ejecuta
 });
